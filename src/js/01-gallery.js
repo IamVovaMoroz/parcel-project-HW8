@@ -6,7 +6,7 @@ import { galleryItems } from './gallery-items';
 
 // Change code below this line
 
-console.log(galleryItems);
+
 // Получили ссылку на div Container
 const galleryContainer = document.querySelector('.gallery')
 
