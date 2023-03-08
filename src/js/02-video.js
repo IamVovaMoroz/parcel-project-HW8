@@ -1,42 +1,17 @@
+import Player from '@vimeo/player';
+import throttle from 'lodash.throttle';
 
-  const iframe = document.querySelector('iframe');
-  const player = new Vimeo.Player(iframe);
+const iframeEl = document.querySelector('iframe');
 
-  player.on('play', function() {
-      console.log('played the video!');
-  });
+const VIMEO_KEY_LS = "videoplayer-current-time";
 
-  player.getVideoTitle().then(function(title) {
-      console.log('title:', title);
-  });
 
-  
-  const onPlay = function(data) {
-    // data is an object containing properties specific to that event
+const setWatchingTime = ({seconds}) => {
+    localStorage.setItem(VIMEO_KEY_LS, seconds);
 };
 
-player.on('play', onPlay);
 
 
-
-// При перезагрузке страницы воспользуйся методом setCurrentTime() 
-// для того чтобы возобновить воспроизведение с сохраненной позиции.
-
-player.play().then(function() {
-    // the video was played
-}).catch(function(error) {
-    switch (error.name) {
-        case 'PasswordError':
-            // the video is password-protected and the viewer needs to enter the
-            // password first
-            break;
-
-        case 'PrivacyError':
-            // the video is private
-            break;
-
-        default:
-            // some other error occurred
-            break;
-    }
-});
+const player = new Player(iframeEl);
+player.on('timeupdate', throttle(setWatchingTime, 1000));
+player.setCurrentTime(localStorage.getItem(VIMEO_KEY_LS) || 0);
