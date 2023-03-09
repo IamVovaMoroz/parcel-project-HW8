@@ -3,6 +3,7 @@ import throttle from 'lodash.throttle';
 // Получаем досту form
 
 const form = document.querySelector('.feedback-form');
+const textarea = document.querySelector('.feedback-form textarea');
 // const refs = {
 //   form: document.querySelector('.feedback-form'),
 //   textarea: document.querySelector('.feedback-form textarea'),
@@ -61,7 +62,7 @@ function populateForm () {
   if (savedMessage) {
     console.log(savedMessage);
 
-    form.value = savedMessage;
+    // form.value = savedMessage;
 
     // Значение поля email из LocalStorage
     console.log(savedMessage.email);
@@ -74,6 +75,6 @@ function populateForm () {
 // Получить значение инпута email??
 console.log(form.email.name.value);
 // Получить значение form message
-console.log(form.message.name.value);
+console.log(form.textarea);
 
 // Приравнять значение полей к значениям из LocalStorage в функции выше
