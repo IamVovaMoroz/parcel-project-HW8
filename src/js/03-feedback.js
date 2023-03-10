@@ -51,7 +51,7 @@ function onFormInput (event) {
   localStorage.setItem(STORAGE_KEY, inputValue);
 }
 populateForm();
-function populateForm (event) {
+function populateForm () {
   const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
   const savedMessage = JSON.parse(dataLocalStorage);
 
