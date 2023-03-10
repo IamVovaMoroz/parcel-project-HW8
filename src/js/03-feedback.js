@@ -3,22 +3,23 @@ import throttle from 'lodash.throttle';
 // Получаем досту form
 
 const form = document.querySelector('.feedback-form');
-const textarea = document.querySelector('.feedback-form textarea');
-const input = document.querySelector('.feedback-form label');
-console.log(input);
+// const textarea = document.querySelector('.feedback-form textarea');
+// const input = document.querySelector('.feedback-form label');
+
 // const refs = {
 //   form: document.querySelector('.feedback-form'),
 //   textarea: document.querySelector('.feedback-form textarea'),
 // };
 
 // Имя ключа в localStorage записываем в переменную
-const STORAGE_KEY = '"feedback-form-state';
+const STORAGE_KEY = 'feedback-form-state';
 
 // Обьект для хранения значений с form
 const formData = {};
 // Вешаем слушателя на форму и textarea
+
 form.addEventListener('submit', throttle(onFormSubmit, 500));
-// refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+
 form.addEventListener('input', throttle(onFormInput, 500));
 
 form.addEventListener('input', event => {
@@ -38,8 +39,6 @@ function onFormSubmit (event) {
   event.target.reset();
   //   Очистка формы при перезагрузке страницы
   localStorage.removeItem(STORAGE_KEY);
-
-  //   console.log(event.currentTarget "event.currentTarget - форма);
 }
 
 // Получаем значение с input и добавляем его в localStorage
@@ -47,37 +46,39 @@ function onFormInput (event) {
   console.log(formData);
 
   const inputValue = JSON.stringify(formData);
-  //   console.log(inputValue);
+
   localStorage.setItem(STORAGE_KEY, inputValue);
 }
 populateForm();
-function populateForm () {
+function populateForm (event) {
   const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
   const savedMessage = JSON.parse(dataLocalStorage);
 
   //   чтобы небыло Null для пользователей кто не был ранее,
   //    делаем проверку на сохранённое сообщение.
   if (savedMessage) {
-    // Значение   получает из LOcal сторедж,
+    // Значение   получает из Local storage,
     //  если клиент не отправил значения
-    textarea.value = savedMessage.message;
+    form.elements.message.value = savedMessage.message;
 
-    // input.value = savedMessage.email;
+    form.elements.email.value = savedMessage.email;
+
+    // Записываем значения в переменную formData
+    formData.email = savedMessage.email;
+    formData.message = savedMessage.message;
 
     console.log(savedMessage);
-    console.log();
+    console.log(formData);
 
-    // Получить доступ к инпуту и textarea и
-    // приравнять их к значениям из localStorage
-
-    // Значение поля email из LocalStorage
-    console.log(savedMessage.email);
-    // Значение поля message из LocalStorage
-    console.log(savedMessage.message);
+    // // Значение поля email из LocalStorage
+    // console.log(savedMessage.email);
+    // // Значение поля message из LocalStorage
+    // console.log(savedMessage.message);
   }
-  //   после перезагрузки страницы будет сохраняться текст в textarea
 }
 
+// console.log(form.elements.email.value);
+// console.log(form.elements.message.value);
 // Получаем значение из LocalStorage и возвращаем назад его в
 // инпут(для не отправленных сообщений)
 
