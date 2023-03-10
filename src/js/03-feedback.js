@@ -10,7 +10,7 @@ console.log(input);
 //   form: document.querySelector('.feedback-form'),
 //   textarea: document.querySelector('.feedback-form textarea'),
 // };
-populateForm();
+
 // Имя ключа в localStorage записываем в переменную
 const STORAGE_KEY = '"feedback-form-state';
 
@@ -50,7 +50,7 @@ function onFormInput (event) {
   //   console.log(inputValue);
   localStorage.setItem(STORAGE_KEY, inputValue);
 }
-
+populateForm();
 function populateForm (event) {
   const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
   const savedMessage = JSON.parse(dataLocalStorage);
