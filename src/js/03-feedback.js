@@ -15,10 +15,12 @@ const form = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
 
 // Обьект для хранения значений с form
-const formData = {};
+let formData = {};
+populateForm();
+
 // Вешаем слушателя на форму и textarea
 
-form.addEventListener('submit', throttle(onFormSubmit, 500));
+form.addEventListener('submit', onFormSubmit);
 
 form.addEventListener('input', throttle(onFormInput, 500));
 
@@ -36,9 +38,10 @@ function onFormSubmit (event) {
   event.preventDefault();
 
   //   Очистка формы при отправке
-  event.target.reset();
+  event.currentTarget.reset();
   //   Очистка формы при перезагрузке страницы
   localStorage.removeItem(STORAGE_KEY);
+  formData = {};
 }
 
 // Получаем значение с input и добавляем его в localStorage
@@ -49,8 +52,8 @@ function onFormInput (event) {
 
   localStorage.setItem(STORAGE_KEY, inputValue);
 }
-populateForm();
-function populateForm (event) {
+
+function populateForm () {
   const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
   const savedMessage = JSON.parse(dataLocalStorage);
 
@@ -67,8 +70,8 @@ function populateForm (event) {
     formData.email = savedMessage.email;
     formData.message = savedMessage.message;
 
-    console.log(savedMessage);
-    console.log(formData);
+    // console.log(savedMessage);
+    // console.log(formData);
 
     // // Значение поля email из LocalStorage
     // console.log(savedMessage.email);
