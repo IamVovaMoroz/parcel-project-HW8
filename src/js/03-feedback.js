@@ -30,6 +30,7 @@ form.addEventListener('input', event => {
 
   //   В formData ложим name и присваиваем ему значение с input
   formData[nameFormData] = valueFormData;
+  console.log(formData);
   //   const formDataObject = localStorage.getItem((formData));
 });
 // refs.textarea.addEventListener('input', onTextareaInput);
@@ -38,19 +39,19 @@ function onFormSubmit (event) {
   event.preventDefault();
 
   //   Очистка формы при отправке
-  event.currentTarget.reset();
+  event.target.reset();
   //   Очистка формы при перезагрузке страницы
   localStorage.removeItem(STORAGE_KEY);
-  formData = {};
+  console.log(formData);
+  //   formData = {};
 }
 
 // Получаем значение с input и добавляем его в localStorage
 function onFormInput (event) {
-  console.log(formData);
-
   const inputValue = JSON.stringify(formData);
 
   localStorage.setItem(STORAGE_KEY, inputValue);
+  console.log(formData);
 }
 
 function populateForm () {
@@ -63,12 +64,10 @@ function populateForm () {
     // Значение   получает из Local storage,
     //  если клиент не отправил значения
     form.elements.message.value = savedMessage.message;
-
-    form.elements.email.value = savedMessage.email;
-
-    // Записываем значения в переменную formData
     formData.email = savedMessage.email;
+    form.elements.email.value = savedMessage.email;
     formData.message = savedMessage.message;
+    // Записываем значения в переменную formData
 
     // console.log(savedMessage);
     // console.log(formData);
