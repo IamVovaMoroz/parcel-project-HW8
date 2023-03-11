@@ -63,7 +63,7 @@ function populateForm () {
   //    делаем проверку на сохранённое сообщение.
   if (savedMessage) {
     // Значение   получает из Local storage,
-    //  если клиент не отправил значения
+    //  если клиент не отправил значения.
     form.elements.message.value = savedMessage.message;
     formData.message = savedMessage.message;
     form.elements.email.value = savedMessage.email;
@@ -72,7 +72,6 @@ function populateForm () {
     // Записываем значения в переменную formData
 
     // console.log(savedMessage);
-    // console.log(formData);
 
     // // Значение поля email из LocalStorage
     // console.log(savedMessage.email);
