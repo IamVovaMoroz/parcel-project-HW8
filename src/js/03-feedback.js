@@ -32,7 +32,6 @@ form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormSubmit (event) {
   event.preventDefault();
-
   //   Очистка формы при отправке
   event.target.reset();
   //   Очистка формы при перезагрузке страницы
@@ -49,7 +48,6 @@ function onFormInput (event) {
 
   //   В formData ложим name и присваиваем ему значение с input
   formData[key] = event.target.value;
-  console.log(formData);
 
   const inputValue = JSON.stringify(formData);
 
