@@ -56,32 +56,28 @@ function onFormInput (event) {
 }
 
 function populateForm () {
-  try {
-    const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
-    const savedMessage = JSON.parse(dataLocalStorage);
+  const dataLocalStorage = localStorage.getItem(STORAGE_KEY);
+  const savedMessage = JSON.parse(dataLocalStorage);
 
-    //   чтобы небыло Null для пользователей кто не был ранее,
-    //    делаем проверку на сохранённое сообщение.
-    if (savedMessage) {
-      // Значение   получает из Local storage,
-      //  если клиент не отправил значения
-      form.elements.message.value = savedMessage.message;
-      formData.message = savedMessage.message;
-      form.elements.email.value = savedMessage.email;
-      formData.email = savedMessage.email;
+  //   чтобы небыло Null для пользователей кто не был ранее,
+  //    делаем проверку на сохранённое сообщение.
+  if (savedMessage) {
+    // Значение   получает из Local storage,
+    //  если клиент не отправил значения
+    form.elements.message.value = savedMessage.message;
+    formData.message = savedMessage.message;
+    form.elements.email.value = savedMessage.email;
+    formData.email = savedMessage.email;
 
-      // Записываем значения в переменную formData
+    // Записываем значения в переменную formData
 
-      // console.log(savedMessage);
-      // console.log(formData);
+    // console.log(savedMessage);
+    // console.log(formData);
 
-      // // Значение поля email из LocalStorage
-      // console.log(savedMessage.email);
-      // // Значение поля message из LocalStorage
-      // console.log(savedMessage.message);
-    }
-  } catch (error) {
-    console.log(error.message);
+    // // Значение поля email из LocalStorage
+    // console.log(savedMessage.email);
+    // // Значение поля message из LocalStorage
+    // console.log(savedMessage.message);
   }
 }
 
