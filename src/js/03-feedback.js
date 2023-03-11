@@ -36,7 +36,7 @@ function onFormSubmit (event) {
   event.target.reset();
   //   Очистка формы при перезагрузке страницы
   localStorage.removeItem(STORAGE_KEY);
-
+  console.log(formData);
   formData = {};
   //   console.log(formData);
 }
@@ -52,7 +52,6 @@ function onFormInput (event) {
   const inputValue = JSON.stringify(formData);
 
   localStorage.setItem(STORAGE_KEY, inputValue);
-  console.log(formData);
 }
 
 function populateForm () {
