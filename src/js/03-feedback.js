@@ -64,10 +64,10 @@ function populateForm () {
   if (savedMessage) {
     // Значение   получает из Local storage,
     //  если клиент не отправил значения.
-    form.elements.message.value = savedMessage.message;
-    formData.message = savedMessage.message;
-    form.elements.email.value = savedMessage.email;
-    formData.email = savedMessage.email;
+    form.elements.message.value = savedMessage.message || '';
+    formData.message = savedMessage.message || '';
+    form.elements.email.value = savedMessage.email || '';
+    formData.email = savedMessage.email || '';
 
     // Записываем значения в переменную formData
 
@@ -106,12 +106,3 @@ function populateForm () {
 //     // Значение поля message из LocalStorage
 //     console.log(savedMessage.message);
 //   }
-//   //   после перезагрузки страницы будет сохраняться текст в textarea
-// }
-
-// Получить значение инпута email??
-
-// Получить значение form message
-// console.log(form.textarea);
-
-// Приравнять значение полей к значениям из LocalStorage в функции выше
